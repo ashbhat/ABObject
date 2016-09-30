@@ -17,7 +17,14 @@ Best description / use instructions are in the ViewController.m - Copied below f
     
     //in addition the NSLogging of ABObjects is made so you can see what values you're working w/ as opposed to just the memory address
     NSLog(@"%@", currentUser);
-    
+    /**
+    === console log ===
+    ABObject<user>:{
+      id = 5;
+      name = "Ash Bhat";
+      provider = facebook;
+    }
+    **/
 }
 
 -(void)genericObjectExample{
@@ -25,24 +32,18 @@ Best description / use instructions are in the ViewController.m - Copied below f
     someObject[@"foo"] = @"bar";
     someObject[@"har"] = @"ambe";
     NSLog(@"%@", someObject[@"foo"]);
+    /**
+    === console log ===
+    bar
+    **/
     [someObject saveInBackground];
 }
 
 -(void)loginUserExample{
     [ABUser loginUserWithParams:@{@"username" : @"Chuck", @"password" : @"norris"} atUrl:@"http://yourUrl.com/user" withBlock:^(ABUser *user, NSError *error) {
-        //stubbing the response and calling the private method with [self getExampleUser], your implementation wouldn't need this because you'd get a response from your server
-        ABUser *exampleUser = [self getExampleUser];
-        //works w/ a realUrl
-        [exampleUser saveInBackground];
+        user[@"device"] = @"ios";
+        [user saveInBackground];
     }];
 }
 
-
--(ABUser *)getExampleUser{
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-        ABUser *example = [[ABUser class] performSelector:@selector(setUpCurrentUserWithLoginResponse:andSaveRoute:) withObject:@{@"id" : @5,@"provider" : @"facebook", @"name" : @"Ash Bhat"} withObject:@"http://yourUrl.com/user"];
-#pragma clang diagnostic pop
-    return example;
-}
 ```
