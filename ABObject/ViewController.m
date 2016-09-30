@@ -53,7 +53,7 @@
 -(ABUser *)getExampleUser{
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
-    ABUser *example = [[ABUser new] performSelector:@selector(setUpCurrentUserWithLoginResponse::) withObject:@{@"id" : @5,@"provider" : @"facebook", @"name" : @"Ash Bhat"} withObject:@"http://yourUrl.com/user"];
+        ABUser *example = [[ABUser class] performSelector:@selector(setUpCurrentUserWithLoginResponse:andSaveRoute:) withObject:@{@"id" : @5,@"provider" : @"facebook", @"name" : @"Ash Bhat"} withObject:@"http://yourUrl.com/user"];
 #pragma clang diagnostic pop
     return example;
 }
