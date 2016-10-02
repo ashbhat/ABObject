@@ -32,15 +32,27 @@
     
     NSURLSessionDataTask * dataTask =[defaultSession dataTaskWithRequest:urlRequest
                                                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                           if(error == nil)
-                                                           {
-                                                               id returnedObject = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableLeaves error:nil];
-                                                               success(returnedObject);
-                                                           }
-                                                           else{
+                                                           
+                                                           if (error) {
                                                                NSLog(@"error %@",error.description);
                                                                failure(error, nil);
                                                            }
+                                                           if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                                               
+                                                               NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+                                                               
+                                                               if (statusCode != 200) {
+                                                                   NSLog(@"dataTaskWithRequest HTTP status code: %ld", (long)statusCode);
+                                                                   NSError *error = [NSError errorWithDomain:@"com.abobject"
+                                                                                                        code:statusCode
+                                                                                                    userInfo:nil];
+                                                                   failure(error, nil);
+                                                                   return;
+                                                               }
+                                                           }
+
+                                                           id returnedObject = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableLeaves error:nil];
+                                                           success(returnedObject);
                                                        }];
     [dataTask resume];
 
@@ -68,15 +80,27 @@
     
     NSURLSessionDataTask * dataTask =[defaultSession dataTaskWithRequest:urlRequest
                                                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                           if(error == nil)
-                                                           {
-                                                               id returnedObject = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableLeaves error:nil];
-                                                               success(returnedObject);
-                                                           }
-                                                           else{
+                                                           
+                                                           if (error) {
                                                                NSLog(@"error %@",error.description);
                                                                failure(error, nil);
                                                            }
+                                                           if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                                               
+                                                               NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+                                                               
+                                                               if (statusCode != 200) {
+                                                                   NSLog(@"dataTaskWithRequest HTTP status code: %ld", (long)statusCode);
+                                                                   NSError *error = [NSError errorWithDomain:@"com.abobject"
+                                                                                                        code:statusCode
+                                                                                                    userInfo:nil];
+                                                                   failure(error, nil);
+                                                                   return;
+                                                               }
+                                                           }
+                                                           
+                                                           id returnedObject = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableLeaves error:nil];
+                                                           success(returnedObject);
                                                        }];
     [dataTask resume];
 }
@@ -100,15 +124,27 @@
     
     NSURLSessionDataTask * dataTask =[defaultSession dataTaskWithRequest:urlRequest
                                                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                           if(error == nil)
-                                                           {
-                                                               id returnedObject = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableLeaves error:nil];
-                                                               success(returnedObject);
-                                                           }
-                                                           else{
+                                                           
+                                                           if (error) {
                                                                NSLog(@"error %@",error.description);
                                                                failure(error, nil);
                                                            }
+                                                           if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                                               
+                                                               NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+                                                               
+                                                               if (statusCode != 200) {
+                                                                   NSLog(@"dataTaskWithRequest HTTP status code: %ld", (long)statusCode);
+                                                                   NSError *error = [NSError errorWithDomain:@"com.abobject"
+                                                                                                        code:statusCode
+                                                                                                    userInfo:nil];
+                                                                   failure(error, nil);
+                                                                   return;
+                                                               }
+                                                           }
+                                                           
+                                                           id returnedObject = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableLeaves error:nil];
+                                                           success(returnedObject);
                                                        }];
     [dataTask resume];
 }
