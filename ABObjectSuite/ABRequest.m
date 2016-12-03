@@ -52,6 +52,9 @@
                                                            }
 
                                                            id returnedObject = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableLeaves error:nil];
+                                                           if (!returnedObject) {
+                                                               returnedObject = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+                                                           }
                                                            success(returnedObject);
                                                        }];
     [dataTask resume];
@@ -100,6 +103,9 @@
                                                            }
                                                            
                                                            id returnedObject = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableLeaves error:nil];
+                                                           if (!returnedObject) {
+                                                               returnedObject = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+                                                           }
                                                            success(returnedObject);
                                                        }];
     [dataTask resume];
@@ -144,6 +150,9 @@
                                                            }
                                                            
                                                            id returnedObject = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableLeaves error:nil];
+                                                           if (!returnedObject) {
+                                                               returnedObject = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+                                                           }
                                                            success(returnedObject);
                                                        }];
     [dataTask resume];
